@@ -25,12 +25,14 @@ class _MyAppState extends State<MyApp> {
 //        body: Column(
         //         children: _rows.map((row) => Row(children: row)).toList(),
 //        ),
-        body: Container(
-            child: Column(
-                children: _rows
-            ),
-          margin: const EdgeInsets.all(50),
-          padding: const EdgeInsets.all(10),
+        body: Center(
+          child: Container(
+              child: Column(
+                  children: _rows
+              ),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
+          ),
         ),
 
         floatingActionButton: FloatingActionButton(
@@ -43,7 +45,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _addRow() {
-    int colnum = 3;
+    int colnum = 2;
     setState(() {
       if (_count % colnum == 0) {
         _rows.add(Row(
@@ -55,17 +57,11 @@ class _MyAppState extends State<MyApp> {
         _rows[_count ~/ colnum] = Row(
           children: [
             ..._rows[_count ~/ colnum].children,
-            Icon(Icons.person),
+            Padding(padding: EdgeInsets.all(10)),
+            _buildRectangle(),
           ],
         );
-      } else if (_count % colnum == 2){
-        _rows[_count ~/ colnum] = Row(
-          children: [
-            ..._rows[_count ~/ colnum].children,
-            Icon(Icons.table_rows_sharp),
-          ],
-        );
-      };
+      }
 
       _count += 1;
 
